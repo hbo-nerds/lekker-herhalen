@@ -1,0 +1,443 @@
+:root {
+    --background-color: #18181b;
+    --text-color: #ffffff;
+    --border: #3a3a3a;
+    --button: #3a3a3a;
+    --button-hover: #575757;
+    --modal-background-color: #242424;
+    --modal-button: #777;
+    --modal-button-hover: #eee;
+    --danger: #ff5555;
+    --danger-hover: #ff7777;
+    --schedule-background-1: #414141;
+    --schedule-background-2: #313131;
+    --schedule-link: #7eabff;
+    --schedule-date: #ddd;
+}
+
+body.light-mode {
+    --background-color: #f0f0f0;
+    --text-color: #000000;
+    --border: #d1d1d1;
+    --button: #d1d1d1;
+    --button-hover: #b8b8b8;
+    --modal-background-color: #f9f9f9;
+    --modal-button: #666;
+    --modal-button-hover: #111;
+    --schedule-background-1: #f0f0f0;
+    --schedule-background-2: #e0e0e0;
+    --schedule-link: #5690fd;
+    --schedule-date: #222;
+}
+
+html,
+body {
+    background-color: var(--background-color);
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100%
+}
+
+#bar {
+    display: flex;
+    align-items: center;
+    height: 50px;
+
+    background-color: var(--background-color);
+    color: var(--text-color);
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    font-family: Inter, sans-serif;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+#bar p {
+    margin: 0;
+    padding: 10px;
+}
+
+#bar .menu {
+    margin-left: auto;
+    margin-right: 14px;
+}
+
+.fullscreen #bar .menu {
+    display: none;
+}
+
+#bar .logo {
+    height: 80%;
+    margin: 5px;
+}
+
+.twitch {
+    display: flex;
+    height: calc(100vh - 50px)
+}
+
+#twitch-vod {
+    flex: 1 1 auto;
+    aspect-ratio: 16 / 9;
+    max-width: calc(100% - 340px);
+    background-color: #000;
+}
+
+#twitch-vod.hide {
+    display: none;
+}
+
+#twitch-chat {
+    flex: 0 0 340px;
+    min-width: 340px;
+    border-left: 1px solid var(--border);
+}
+
+#twitch-chat.fullscreen {
+    width: 100%;
+    border-left: none;
+}
+
+#twitch-chat.hide {
+    display: none;
+}
+
+#twitch-chat iframe {
+    z-index: 1000;
+    position: relative;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background-color: var(--background-color)
+}
+
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 15px;
+    font-size: 14px;
+    color: var(--text-color);
+    background-color: var(--button);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.menu a {
+    text-decoration: none;
+}
+
+.menu button:hover {
+    background-color: var(--button-hover);
+}
+
+.menu button i {
+    margin-right: 8px;
+}
+
+.hamburger {
+    display: none;
+}
+
+.btn-sync.desynced {
+    background-color: var(--danger)
+}
+
+.btn-sync.desynced:hover {
+    background-color: var(--danger-hover)
+}
+
+#sm-btn-sync {
+    display: none;
+}
+
+#twitch-vod iframe,
+#twitch-chat iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+#twitch-chat .menu {
+    display: none;
+}
+
+.fullscreen #bar {
+    display: none;
+}
+
+.fullscreen .twitch {
+    height: 100vh;
+}
+
+.fullscreen #twitch-chat .menu button {
+    display: none;
+}
+
+.fullscreen #twitch-chat .menu button.fullscreen-visible {
+    display: block;
+}
+
+.menu-fullscreen {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+}
+
+.menu-fullscreen button {
+    /* display: none; */
+    border-radius: 0;
+    margin-left: 3px;
+    padding: 8px 11px;
+    opacity: 0.5;
+}
+
+.menu-fullscreen button:first-child {
+    border-radius: 0 0 0 5px;
+}
+
+.menu-fullscreen button:hover {
+    opacity: 1;
+}
+
+.chat-banner {
+    display: none;
+    width: 100%;
+    height: 32px;
+}
+
+.fullscreen .chat-banner {
+    display: block;
+}
+
+.fullscreen .menu-fullscreen {
+    display: flex;
+    z-index: 1005;
+}
+
+.fullscreen #btn-close {
+    display: flex;
+}
+
+#btn-close:hover {
+    opacity: 1;
+}
+
+.fullscreen #twitch-chat .menu {
+    display: flex;
+}
+
+
+.modal {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+.modal-content {
+    position: relative;
+    font-family: Inter, sans-serif;
+    background-color: var(--modal-background-color);
+    padding: 20px;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 50%;
+    border-radius: 10px;
+    color: var(--text-color);
+    max-height: 90%;
+    overflow-y: auto;
+}
+
+.btn-close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+#twitch-chat {
+    height: auto;
+}
+
+.schedule-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.schedule-header {
+    display: flex;
+    justify-content: space-around;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.schedule-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.schedule-week {
+    display: flex;
+    gap: 5px;
+}
+
+.schedule-week:nth-child(odd) .schedule-item {
+    background-color: var(--schedule-background-1);
+}
+
+.schedule-week:nth-child(even) .schedule-item {
+    background-color: var(--schedule-background-2);
+}
+
+.schedule-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.schedule-item span {
+    margin-top: 5px;
+    color: var(--schedule-date);
+    font-style: italic;
+}
+
+.modal a {
+    font-weight: bold;
+    color: var(--schedule-link);
+    text-decoration: none;
+}
+
+@media (orientation: portrait) {
+    .twitch {
+        flex-direction: column;
+    }
+
+    #twitch-chat {
+        flex: unset;
+        min-width: unset;
+        width: 100%;
+        flex-grow: 1;
+        border-left: none;
+        border-top: 1px solid var(--border);
+    }
+
+    #twitch-vod {
+        flex: unset;
+        max-width: 100%;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .menu {
+        display: none;
+    }
+
+    .menu.show {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        position: absolute;
+        top: 51px;
+        width: 25%;
+        min-width: 120px;
+        z-index: 1001;
+    }
+
+    .draggable-bar {
+        display: flex;
+        width: 100%;
+        height: 13px;
+        font-size: 9px;
+        background-color: var(--border);
+        cursor: row-resize;
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-color);
+    }
+
+    .draggable-bar::before,
+    .draggable-bar::after {
+        content: '';
+        position: absolute;
+        width: 25px;
+        height: 2px;
+        background-color: var(--modal-button);
+    }
+
+    .draggable-bar::before {
+        top: 4px;
+    }
+
+    .draggable-bar::after {
+        top: 8px;
+    }
+
+    .draggable-bar i {
+        z-index: 2;
+    }
+
+    .menu button {
+        width: 100%;
+        font-size: 16px;
+        padding: 11px 15px;
+        justify-content: left;
+    }
+
+    .menu a {
+        width: 100%;
+    }
+
+    #btn-fullscreen {
+        display: none;
+    }
+
+    #sm-btn-sync {
+        display: block;
+        margin-left: 5px;
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 3px;
+    }
+
+    .schedule-table {
+        border-spacing: 3px 3px;
+    }
+
+}

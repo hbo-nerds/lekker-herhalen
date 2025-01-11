@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://player.twitch.tv/js/embed/v1.js"></script>
+    <script src="index.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="icon" href="images/avatar.png">
+    <title>Lekker Herhalen</title>
+</head>
+
+<body>
+    <div id="app">
+        <header id="bar">
+            <img class="logo" src="images/avatar.png">
+            <p>Lekker Herhalen</p>
+            <button id="hamburger" class="hamburger"><i class="fas fa-bars"></i></button>
+            <button id="sm-btn-sync" class="btn-sync"><i class="fas fa-tower-broadcast"></i> Sync</button>
+            <div id="menu" class="menu">
+                <button class="btn-sync"><i class="fas fa-tower-broadcast"></i>
+                    Sync</button>
+                <button class="btn-lighting"><i class="fas fa-moon"></i> Donker</button>
+                <button class="btn-chat">
+                    <i class="fas fa-comment"></i> Chat
+                </button>
+                <button class="btn-info"><i class="fas fa-circle-info"></i> Info</button>
+                <button class="btn-calender"><i class="fas fa-calendar-days"></i> Schema</button>
+                <a href="https://twitch.tv/lekkerherhalen" target="_blank">
+                    <button title="Volg om op de hoogte te blijven van herhalingen!">
+                        <i class="fa-brands fa-twitch"></i> Twitch
+                    </button>
+                </a>
+                <a href="https://github.com/hbo-nerds/lekker-herhalen" target="_blank">
+                    <button id="btn-github" title="Bekijk de broncode"> <i class="fa-brands fa-github"></i>
+                        Github</button>
+                </a>
+                <a href="https://lekkerspeuren.nl" target="_blank">
+                    <button class="btn-speuren"> <i class="fas fa-search"></i> Speuren </button>
+                </a>
+                <a href="https://reddit.com/r/lekkerspelen" target="_blank">
+                    <button class="btn-reddit"><i class="fa-brands fa-reddit"></i> Reddit</button>
+                </a>
+                <button id="btn-fullscreen" class="btn-fullscreen fullscreen-visible">
+                    <i class="fas fa-expand"></i> Fullscreen
+                </button>
+            </div>
+        </header>
+        <div class="twitch">
+            <div class="menu-fullscreen">
+                <button class="btn-sync"><i class="fas fa-tower-broadcast"></i></button>
+                <button class="btn-lighting"><i class="fas fa-moon"></i></button>
+                <button class="btn-chat"><i class="fas fa-comment"></i> </button>
+                <button class="btn-info"><i class="fas fa-circle-info"></i></button>
+                <button class="btn-calender"><i class="fas fa-calendar-days"></i></button>
+                <a href="https://twitch.tv/lekkerherhalen" target="_blank">
+                    <button title="Volg om op de hoogte te blijven van herhalingen!">
+                        <i class="fa-brands fa-twitch"></i>
+                    </button>
+                </a>
+                <a href="https://lekkerspeuren.nl" target="_blank">
+                    <button> <i class="fas fa-search"></i></button>
+                </a>
+                <a href="https://reddit.com/r/lekkerspelen" target="_blank">
+                    <button class="btn-reddit"><i class="fa-brands fa-reddit"></i></button>
+                </a>
+                <button id="btn-close" class="btn-fullscreen"><i class="fas fa-close"></i></button>
+            </div>
+            <div id="twitch-vod">
+            </div>
+            <div id="twitch-chat">
+                <div class="chat-banner"></div>
+                <iframe width="340" height="500"></iframe>
+                </iframe>
+            </div>
+        </div>
+    </div>
+    <div id="modal-info" class="modal">
+        <div class="modal-content">
+            <span class="btn-close-modal">&times;</span>
+            <h2>Info</h2>
+            <p><b></b>Lekker herhalen</b> is een pleister op de wond voor de vaste kijkers van Lekker spelen streams.
+                De mannen hebben besloten niet meer wekelijks te streamen op de maandag- en woensdagavond.
+                lekkerherhalen.nl
+                neemt dat schema over, voor de fans die niet weten hoe ze hun avond moeten vullen met iets anders dan
+                Lekker spelen.
+                Super leuk!</p>
+            <p><b>Samen terugkijken</b></p>
+            <p>Deze website speelt een Lekker spelen VOD af. Dit gebeurt via een Twitch embed. Je moet dus Lekker spelen
+                subscriber
+                zijn om de VOD te bekijken. De website regelt dat iedereen gelijkloopt, zodat je samen kan reageren op
+                dat ene
+                flauwe geintje.</p>
+            <hr>
+            <h2>Schema</h2>
+            <h3>Main streams</h3>
+            <p><i>Elke maandag- en woensdagavond, om 20:30.</i></p>
+            <p>De streams die origineel ook op maandag- en woensdagavond werden uitgezonden. De Main Events van de VODs.
+            </p>
+            <p>De main streams worden afgespeeld op chronologische volgorde, te beginnen met 2015. Op een maandag van
+                week 12 zoeken we naar de VOD op dezelfde week en dag, maar dan 10 jaar geleden Mocht de VOD niet
+                beschikbaar
+                zijn, dan spelen we een random VOD af van de main streams.</p>
+            <h3>Bonus streams</h3>
+            <p><i>Willekeurig op dinsdag, donderdag, en vrijdag, tussen 16:30 en 20:30.</i></p>
+            <p>Zo'n Anime Donderdag, of gewoon zo'n potje Fall Guys met de mannen.</p>
+            <p>De bonus streams worden op willekeurige momenten afgespeeld. Er kunnen dus weken voorbij gaan
+                zonder extra stream.</p>
+            <hr>
+            <h2>Credits</h2>
+            <p><b>Gemaakt door Sheepolution</b></p>
+            <p>Een project van <b><a href="https://github.com/hbo-nerds">Hbo-nerds</a></b></p>
+            <p>Niet geaffilieerd met Lekker spelen</p>
+        </div>
+    </div>
+    <div id="modal-calender" class="modal">
+        <div class="modal-content">
+            <span class="btn-close-modal">&times;</span>
+            <div id="calender">
+                Laden...
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

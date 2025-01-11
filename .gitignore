@@ -1,0 +1,6 @@
+.env
+.venv
+__pycache__
+server/data/index.json
+server/data/schedule_main.json
+server/data/schedule_bonus.json

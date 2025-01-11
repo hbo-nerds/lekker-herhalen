@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js" defer></script>
+</head>
+
+<body>
+    <input class="password-input" type="password" id="password" placeholder="Wachtwoord">
+    <div class="options">
+        <div class="upload-area" id="uploadArea">
+            <label class="option" for="fileInput">
+                <i class="fas fa-upload"></i>
+                <p>Upload schema</p>
+                <input type="file" id="fileInput" accept=".json">
+            </label>
+        </div>
+        <hr style="width: 100%;">
+        <div>
+            <div class="option toggle-btn" id="toggleButton">
+                <i class="fas fa-times"></i>
+                <p>LS gaat NIET live vandaag</p>
+            </div>
+            <div class="option play-btn" id="playMainButton">
+                <i class="fa-solid fa-heart"></i>
+                <p>Start MAIN stream</p>
+            </div>
+
+            <div class="option play-btn" id="playBonusButton">
+                <i class="fa-solid fa-star"></i>
+                <p>Start BONUS stream</p>
+            </div>
+
+            <div class="option play-btn" id="stopButton">
+                <i class="fas fa-ban"></i>
+                <p>STOP de stream</p>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

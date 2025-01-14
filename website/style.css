@@ -183,6 +183,10 @@ button {
     border: none;
 }
 
+.fullscreen #twitch-chat iframe {
+    height: calc(100% - 32px);
+}
+
 #twitch-chat .menu {
     display: none;
 }

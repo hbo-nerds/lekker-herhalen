@@ -39,11 +39,16 @@ def get_new_access_token():
 
         # Update the .env file with the new tokens
         set_key(env_path, 'TWITCH_ACCESS_TOKEN', access_token)
+        print('Access token updated successfully!')
         if refresh_token:
             set_key(env_path, 'TWITCH_REFRESH_TOKEN', refresh_token)
 
 # Function to refresh the Twitch access token
-def refresh_access_token():
+def refresh_access_token(check=False):
+    if check:
+        if validate_access_token(TWITCH_ACCESS_TOKEN):
+            return TWITCH_ACCESS_TOKEN
+
     token_url = 'https://id.twitch.tv/oauth2/token'
     params = {
         'client_id': TWITCH_CLIENT_ID,
@@ -66,10 +71,12 @@ def refresh_access_token():
         if new_refresh_token:
             set_key(env_path, 'TWITCH_REFRESH_TOKEN', new_refresh_token)
 
+        headers['Authorization'] = f'Bearer {new_access_token}'
+
         return new_access_token
     else:
         print(f'Failed to refresh token: {response.status_code} - {response.text}')
-        exit()
+
 
 # Function to validate the current access token
 def validate_access_token(access_token):
@@ -104,22 +111,18 @@ headers = {
 }
 
 def get_game_id(name):
-    global TWITCH_ACCESS_TOKEN
-    if not validate_access_token(TWITCH_ACCESS_TOKEN):
-        print('Access token is invalid or expired, refreshing...')
-        TWITCH_ACCESS_TOKEN = refresh_access_token()
-
+    default = '509663' # Special Events
     response = requests.get(f'{base_url}games', headers=headers, params={
         'name': name
     })
 
     if response.status_code == 200:
         data = response.json()
-        if data['data']:
-            return data['data'][0]['id']
+        if data.get('data'):
+            return data.get('data')[0].get('id') or default
 
     print(f'Failed to get game ID for {name}: {response.status_code} - {response.text}')
-    return '509663' # Special Events
+    return default
 
 def is_channel_live():
     response = requests.get(f'{base_url}streams', headers=headers, params={
@@ -146,6 +149,11 @@ def is_ls_live():
     return False
 
 def update_channel(title, game_id):
+    global TWITCH_ACCESS_TOKEN
+    if not validate_access_token(TWITCH_ACCESS_TOKEN):
+        print('Access token is invalid or expired, refreshing...')
+        TWITCH_ACCESS_TOKEN = refresh_access_token()
+
     response = requests.patch(f'{base_url}channels', headers=headers, json={
         'broadcaster_id': TWITCH_USER_ID,
         'title':  title,

@@ -66,6 +66,7 @@ async def start_stream(schedule_file, stream_type, manual):
 
     if not manual:
         text = create_post_text(stream_data, twitch_id)
+        twitch.refresh_access_token(True)
         game_id = twitch.get_game_id(stream_data['activities'][0]['title'])
         twitch.update_channel(stream_data['titles'][0], game_id)
         discord.post_to_discord(text)

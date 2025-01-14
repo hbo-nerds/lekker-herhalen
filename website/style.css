@@ -134,7 +134,7 @@ body {
     background-color: var(--background-color)
 }
 
-button {
+.btn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -148,15 +148,16 @@ button {
     transition: background-color 0.3s ease;
 }
 
-.menu a {
+.menu a,
+.menu-fullscreen a {
     text-decoration: none;
 }
 
-.menu button:hover {
+.menu .btn:hover {
     background-color: var(--button-hover);
 }
 
-.menu button i {
+.menu .btn i {
     margin-right: 8px;
 }
 
@@ -199,11 +200,11 @@ button {
     height: 100vh;
 }
 
-.fullscreen #twitch-chat .menu button {
+.fullscreen #twitch-chat .menu .btn {
     display: none;
 }
 
-.fullscreen #twitch-chat .menu button.fullscreen-visible {
+.fullscreen #twitch-chat .menu .btn.fullscreen-visible {
     display: block;
 }
 
@@ -214,19 +215,23 @@ button {
     display: none;
 }
 
-.menu-fullscreen button {
-    /* display: none; */
+.menu-fullscreen .btn {
     border-radius: 0;
-    margin-left: 3px;
+    margin-left: 2px;
     padding: 8px 11px;
     opacity: 0.5;
 }
 
-.menu-fullscreen button:first-child {
+.menu-fullscreen .btn:first-child {
+    padding-left: 13px;
+    padding-right: 13px;
+}
+
+.menu-fullscreen .btn:first-child {
     border-radius: 0 0 0 5px;
 }
 
-.menu-fullscreen button:hover {
+.menu-fullscreen .btn:hover {
     opacity: 1;
 }
 
@@ -424,7 +429,7 @@ button {
         z-index: 2;
     }
 
-    .menu button {
+    .menu .btn {
         width: 100%;
         font-size: 16px;
         padding: 11px 15px;

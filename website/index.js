@@ -30,9 +30,21 @@ const checkSync = () => {
         for (const syncButton of syncButtons) {
             syncButton.classList.add('desynced');
         }
+
+        const icons = document.getElementsByClassName('fa-tower-broadcast');
+        for (const icon of icons) {
+            icon.classList.remove('fa-tower-broadcast');
+            icon.classList.add('fa-arrows-rotate');
+        }
     } else {
         for (const syncButton of syncButtons) {
             syncButton.classList.remove('desynced');
+        }
+
+        const icons = document.getElementsByClassName('fa-arrows-rotate');
+        for (const icon of icons) {
+            icon.classList.remove('fa-arrows-rotate');
+            icon.classList.add('fa-tower-broadcast');
         }
     }
 };
@@ -48,6 +60,12 @@ const syncVideo = () => {
 
         for (const syncButton of syncButtons) {
             syncButton.classList.remove('desynced');
+        }
+
+        const icons = document.getElementsByClassName('fa-arrows-rotate');
+        for (const icon of icons) {
+            icon.classList.remove('fa-arrows-rotate');
+            icon.classList.add('fa-tower-broadcast');
         }
 
         setTimeout(() => {

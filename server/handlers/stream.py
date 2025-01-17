@@ -64,18 +64,17 @@ async def start_stream(schedule_file, stream_type, manual):
     with open('data/index.json', 'w') as file:
         json.dump(index_data, file)
 
-    if not manual:
-        text = create_post_text(stream_data, twitch_id)
-        twitch.refresh_access_token(True)
-        game_id = twitch.get_game_id(stream_data['activities'][0]['title'])
-        twitch.update_channel(stream_data['titles'][0], game_id)
-        discord.post_to_discord(text)
-        streamer.start(duration)
+    text = create_post_text(stream_data, twitch_id)
+    twitch.refresh_access_token(True)
+    game_id = twitch.get_game_id(stream_data['activities'][0]['title'])
+    twitch.update_channel(stream_data['titles'][0], game_id)
+    discord.post_to_discord(text)
+    streamer.start(duration)
 
-        if stream_type == 'main':
-            title = stream_data['titles'][0]
-            post = await reddit.post_to_reddit(title, text)
-            await redis.hset(REDIS_KEYS['stream'], 'reddit_id', post.id)
+    if stream_type == 'main' and not manual:
+        title = stream_data['titles'][0]
+        post = await reddit.post_to_reddit(title, text)
+        await redis.hset(REDIS_KEYS['stream'], 'reddit_id', post.id)
 
     # Start the stream
     await event_queue.put('stream-start')

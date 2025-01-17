@@ -203,12 +203,12 @@ const eventStreamStart = (data) => {
     start_time = new Date(Number(data.start_time * 1000));
 
     for (const speurenButton of speurenButtons) {
-        speurenButton.parentElement.setAttribute('href', `https://lekkerspeuren.nl/item/${data.id}`);
+        speurenButton.setAttribute('href', `https://lekkerspeuren.nl/item/${data.id}`);
     }
 
     if (data.reddit_id) {
         for (const redditButton of redditButtons) {
-            redditButton.parentElement.setAttribute('href', `https://www.reddit.com/r/lekkerspelen/comments/${data.reddit_id}`);
+            redditButton.setAttribute('href', `https://www.reddit.com/r/lekkerspelen/comments/${data.reddit_id}`);
         }
     }
 

@@ -93,6 +93,12 @@ def validate_access_token(access_token):
 
     return response.status_code == 200
 
+# Headers for the request
+headers = {
+    'Authorization': '',
+    'Client-Id': TWITCH_CLIENT_ID
+}
+
 # Validate access token, refresh if necessary
 if not TWITCH_ACCESS_TOKEN:
     print('Access token not found, getting a new one...')
@@ -105,10 +111,7 @@ elif not validate_access_token(TWITCH_ACCESS_TOKEN):
 base_url = 'https://api.twitch.tv/helix/'
 
 # Headers for the request
-headers = {
-    'Authorization': f'Bearer {TWITCH_ACCESS_TOKEN}',
-    'Client-Id': TWITCH_CLIENT_ID
-}
+headers['Authorization'] = f'Bearer {TWITCH_ACCESS_TOKEN}'
 
 def get_game_id(name):
     default = '509663' # Special Events

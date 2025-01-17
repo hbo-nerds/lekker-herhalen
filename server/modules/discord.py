@@ -5,7 +5,7 @@ discord_webhook_url = f'https://discord.com/api/webhooks/{os.getenv("DISCORD_WEB
 
 def post_to_discord(text):
     data = {
-            'content': text,
+            'content': text + "\n<@&1317946865471324190>",
             'username': 'Lekker Herhalen',
             'avatar_url': os.getenv('DISCORD_AVATAR_URL')
         }

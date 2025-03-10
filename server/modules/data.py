@@ -20,7 +20,7 @@ def get_schedule():
 
     response = []
 
-    for i in range(index, 20):
+    for i in range(index, index + 20):
         if i >= len(schedule):
             break
 
